@@ -31,13 +31,13 @@ RSpec.describe User, type: :model do
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
-        expect(another_user.errors.full_messages).to include("Email has already been taken")
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
       end
 
       it 'emailは@を含まないと登録できない' do
         @user.email = 'testtest.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
 
       # ─── パスワードのテスト ───
@@ -51,21 +51,21 @@ RSpec.describe User, type: :model do
         @user.password = '12345'
         @user.password_confirmation = '12345'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
 
       it 'passwordが半角英数字混合でないと登録できない（数字のみ）' do
         @user.password = '123456'
         @user.password_confirmation = '123456'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password は半角英数字を混合して入力してください")
+        expect(@user.errors.full_messages).to include('Password は半角英数字を混合して入力してください')
       end
 
       it 'passwordが半角英数字混合でないと登録できない（英字のみ）' do
         @user.password = 'abcdef'
         @user.password_confirmation = 'abcdef'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Password は半角英数字を混合して入力してください")
+        expect(@user.errors.full_messages).to include('Password は半角英数字を混合して入力してください')
       end
 
       it 'passwordとpassword_confirmationが不一致では登録できない' do
@@ -91,13 +91,13 @@ RSpec.describe User, type: :model do
       it 'last_nameが全角（漢字・ひらがな·カタカナ）でないと登録できない' do
         @user.last_name = 'yamada'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name は全角（漢字・ひらがな・カタカナ）で入力してください")
+        expect(@user.errors.full_messages).to include('Last name は全角（漢字・ひらがな・カタカナ）で入力してください')
       end
 
       it 'first_nameが全角（漢字・ひらがな·カタカナ）でないと登録できない' do
         @user.first_name = 'taro'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name は全角（漢字・ひらがな・カタカナ）で入力してください")
+        expect(@user.errors.full_messages).to include('First name は全角（漢字・ひらがな・カタカナ）で入力してください')
       end
 
       # ─── お名前カナ(全角)のテスト ───
@@ -116,13 +116,13 @@ RSpec.describe User, type: :model do
       it 'last_name_kanaFactoryが全角（カタカナ）でないと登録できない' do
         @user.last_name_kana = 'やまだ'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana は全角（カタカナ）で入力してください")
+        expect(@user.errors.full_messages).to include('Last name kana は全角（カタカナ）で入力してください')
       end
 
       it 'first_name_kanaが全角（カタカナ）でないと登録できない' do
         @user.first_name_kana = 'たろう'
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name kana は全角（カタカナ）で入力してください")
+        expect(@user.errors.full_messages).to include('First name kana は全角（カタカナ）で入力してください')
       end
 
       # ─── 生年月日のテスト ───
