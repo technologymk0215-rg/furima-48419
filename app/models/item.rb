@@ -24,7 +24,6 @@ class Item < ApplicationRecord
   validates :category_id,            numericality: { other_than: 1, message: "can't be blank" }
   validates :sales_status_id,        numericality: { other_than: 1, message: "can't be blank" }
   validates :shipping_fee_status_id, numericality: { other_than: 1, message: "can't be blank" }
-  validates :prefecture_id,          with_options: { numericality: { other_than: 1, message: "can't be blank" } } # 後半で一括指定する予定がなければ他と同様でOK
   validates :prefecture_id,          numericality: { other_than: 1, message: "can't be blank" }
 
   
