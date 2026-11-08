@@ -14,4 +14,19 @@ class Item < ApplicationRecord
 
   has_one :order
   has_one_attached :image
+
+ 
+  validates :image, presence: true
+  validates :name,  presence: true
+  validates :info,  presence: true
+  validates :price, presence: true
+
+  validates :category_id,            numericality: { other_than: 1, message: "can't be blank" }
+  validates :sales_status_id,        numericality: { other_than: 1, message: "can't be blank" }
+  validates :shipping_fee_status_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id,          with_options: { numericality: { other_than: 1, message: "can't be blank" } } # 後半で一括指定する予定がなければ他と同様でOK
+  validates :prefecture_id,          numericality: { other_than: 1, message: "can't be blank" }
+
+  
+  validates :price, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: "is out of setting range" }
 end
