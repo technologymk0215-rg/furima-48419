@@ -80,3 +80,5 @@ end
 gem 'devise'
 gem 'faker'
 gem 'active_hash'
+gem 'mini_magick'
+gem 'image_processing', '~> 1.2'
